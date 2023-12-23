@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    # @items = Item.all
+    @items = Item.order(created_at: :desc)
   end
 
   def new
@@ -17,6 +17,9 @@ class ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  # def show
+  # end
 
   private # rubocop:disable Layout/EmptyLinesAroundAccessModifier
   def item_params
